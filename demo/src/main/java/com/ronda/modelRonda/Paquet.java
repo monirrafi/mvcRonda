@@ -67,6 +67,7 @@ public class Paquet {
             int i=0;
             if(avecDouble == true){
                 while(autre.listPaquet.size() <= nbreCarte){
+                    x=x+70*i;
                     changeOwner(this.listPaquet.get(0), autre, x, y);
                 }
 
@@ -74,6 +75,7 @@ public class Paquet {
                 while(autre.listPaquet.size() <= nbreCarte){
                     Carte carte = this.listPaquet.get(i);
                     if(autre.trouveIndexNombre(carte) ==-1){
+                        x=x+70*i;
                         changeOwner(carte, autre, x, y);
                     }else{
                         i++;
