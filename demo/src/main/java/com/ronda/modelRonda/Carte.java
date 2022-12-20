@@ -1,6 +1,4 @@
 package com.ronda.modelRonda;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public class Carte {
@@ -10,21 +8,26 @@ public class Carte {
     private int y;
     private String owner;
     private ImageIcon image;
-    public final String IMAGE_DOS = "src\\main\\java\\com\\ronda\\dos.png";
-    public final String IMAGE ="src\\main\\java\\com\\ronda\\";
+    public final String IMAGE_DOS = "src\\main\\java\\com\\ronda\\rondaImages\\dos.png";
+    public final String IMAGE ="src\\main\\java\\com\\ronda\\rondaImages";
 
 
     public Carte() {
     }
-    
-    public Carte(int nombre, String genre, int x, int y, String owner) {
+    public Carte(int nombre, String genre, int x, int y, String owner,Boolean avecImage) {
         this.setNombre(nombre);
         this.setGenre(genre);
         this.setX(x);
         this.setY(y);
         this.setOwner(owner);
-        this.setImage(new ImageIcon(IMAGE_DOS));
+        if(avecImage){
+            this.setImage(genre + nombre);
+        }else{
+            this.setImage("dos");
+
+        }
     }
+    
 
     public int getNombre() {
         return nombre;
@@ -59,7 +62,8 @@ public class Carte {
     public ImageIcon getImage() {
         return image;
     }
-    public void setImage(ImageIcon image) {
+    public void setImage(String nomImage) {
+        ImageIcon image = new ImageIcon(IMAGE+ nomImage+ ".png");
         this.image = image;
     }
     public void moveCarte(int x,int y) {
@@ -76,15 +80,6 @@ public class Carte {
             return true;
         }
         return false;
-        
-    }
-    public void changeDos(boolean change) {
-        if(change == true){
-            this.setImage(new ImageIcon(IMAGE  + this.getGenre() + this.getNombre() + ".png"));
-        }else{
-            this.setImage(new ImageIcon(IMAGE_DOS));
-
-        }
         
     }
     

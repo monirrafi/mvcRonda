@@ -17,30 +17,20 @@ import java.awt.event.ActionEvent;
 public class App extends JFrame {
 
 	private JPanel contentPane;
+	public static void main(String[] args) {
+		VueRonda vueRonda = new VueRonda();
+		vueRonda.setVisible(true);
 
 	/**
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					App frame = new App();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	 */
-	public static void main(String[] args) {
+
 		ControleurRonda ctr = ControleurRonda.gControleurRonda();
-		ArrayList<Carte> liste = ctr.getInstanceModelRonda().getListePaquet();
+		ArrayList<Carte> liste = ctr.Ctr_GetPaquet().getListe();
 
 		System.out.println(liste.toString());
 
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	 
 	public App() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 100, 550, 200);
@@ -75,6 +65,6 @@ public class App extends JFrame {
 			}
 		});
 		btnSimple.setBounds(23, 25, 150, 50);
-		contentPane.add(btnSimple);
+		contentPane.add(btnSimple);*/
 	}
 }

@@ -1,10 +1,11 @@
 package com.ronda.controlRonda;
 
 import com.ronda.modelRonda.ModelRonda;
+import com.ronda.modelRonda.Paquet;
 
-public class ControleurRonda {
+public class ControleurRonda implements I_ControleurRonda{
     private static ControleurRonda ctrRonda = null;
-    private static ModelRonda instanceModelRonda = null;
+    public static ModelRonda instanceModelRonda = null;
 
 
     public ControleurRonda(){};
@@ -15,17 +16,13 @@ public class ControleurRonda {
         }
         return ctrRonda;
     }
-    public static ControleurRonda getCtrRonda() {
-        return ctrRonda;
+    @Override
+    public void Ctr_distribuer() {
+        instanceModelRonda.distribuer();
     }
-    public static void setCtrRonda(ControleurRonda ctrRonda) {
-        ControleurRonda.ctrRonda = ctrRonda;
-    }
-    public static ModelRonda getInstanceModelRonda() {
-        return instanceModelRonda;
-    }
-    public static void setInstanceModelRonda(ModelRonda instanceModelRonda) {
-        ControleurRonda.instanceModelRonda = instanceModelRonda;
+    @Override
+    public Paquet Ctr_GetPaquet() {
+        return ModelRonda.getPaquet();
     }
     
 }

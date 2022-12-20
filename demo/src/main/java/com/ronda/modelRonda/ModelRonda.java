@@ -1,14 +1,14 @@
 package com.ronda.modelRonda;
 
-import java.util.ArrayList;
 
 
 public class ModelRonda {
-    private static ArrayList<Carte> listePaquet = new ArrayList<Carte>();
+    private static Paquet paquet = new Paquet("p");
     private static ModelRonda instanceModel = null;
-    private static Paquet paquet = new Paquet();
-    private Paquet joeur = new Paquet();
-    private Paquet ordi = new Paquet();
+    private Main joeur = new Main();
+    private Main ordi = new Main();
+    private Main table = new Main();
+    
 
 
     public static void chargerPaquet() {
@@ -17,12 +17,11 @@ public class ModelRonda {
         for(int i=0;i<lesGenres.length;i++){
             String genre = lesGenres[i];
             for(int j=0;j<lesNombres.length;j++){
-                Carte carte = new Carte(lesNombres[j],genre,1150,200,"source");
-                listePaquet.add(carte);
+                Carte carte = new Carte(lesNombres[j],genre,1150,200,"p",true);
+                paquet.getListe().add(carte);
                 
             }
         }
-        paquet.setListPaquet(listePaquet);
     }
     public ModelRonda(){ };
 
@@ -35,12 +34,16 @@ public class ModelRonda {
     }
 
     public void distribuer() {
-        if (paquet.getPaquet().size() !=0){
-            if(paquet.getPaquet().size()==40){
-                paquet.moveCartes(joeur, false, 0, 5, 485);
+        table.getListPaquet().setNom("t");
+        joeur.getListPaquet().setNom("j");
+        ordi.getListPaquet().setNom("o");
+        if (paquet.getListe().size() !=0){
+            if(paquet.getListe().size()==40){
+                
+                paquet.moveCartes(table.getListPaquet(), false, 4, 5, 485);
             }
-            paquet.moveCartes(joeur, true, 0, 5, 485);
-            paquet.moveCartes(ordi,true, 0, 5, 485);
+            paquet.moveCartes(joeur.getListPaquet(), true, 3, 5, 485);
+            paquet.moveCartes(ordi.getListPaquet(),true, 3, 5, 485);
     
             //donner les points ronda et tiringa
             joeur.pointageRandaTringa(ordi);
@@ -49,23 +52,29 @@ public class ModelRonda {
         
     }    
 
-
-
-
-
-
-
-    public static ArrayList<Carte> getListePaquet() {
-        return listePaquet;
+    public static Paquet getPaquet() {
+        return paquet;
     }
-    public static void setListePaquet(ArrayList<Carte> listePaquet) {
-        ModelRonda.listePaquet = listePaquet;
+    public static void setPaquet(Paquet paquet) {
+        ModelRonda.paquet = paquet;
     }
-    public static ModelRonda getInstanceModel() {
-        return instanceModel;
+    public Main getJoeur() {
+        return joeur;
     }
-    public static void setInstanceModel(ModelRonda instanceModel) {
-        ModelRonda.instanceModel = instanceModel;
+    public void setJoeur(Main joeur) {
+        this.joeur = joeur;
+    }
+    public Main getOrdi() {
+        return ordi;
+    }
+    public void setOrdi(Main ordi) {
+        this.ordi = ordi;
+    }
+    public Main getTable() {
+        return table;
+    }
+    public void setTable(Main table) {
+        this.table = table;
     }
 
 }
