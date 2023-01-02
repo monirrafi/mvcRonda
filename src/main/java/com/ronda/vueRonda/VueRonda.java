@@ -33,6 +33,7 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 	private JLabel lblJouee = new JLabel("JJouee");
 	private Carte carteOrdiJouee = new Carte();
 	private JLabel lblOrdiJouee = new JLabel("OJouee");
+	JLabel lblFond = new JLabel(new ImageIcon("src\\main\\java\\com\\ronda\\rondaImages\\fondImage.jpg"));
 	ControleurRonda ctr_Ronda = ControleurRonda.gControleurRonda();
 	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	int h = (int)dimension.getHeight();
@@ -51,18 +52,20 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 		setExtendedState(this.MAXIMIZED_BOTH);
 		//contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setBackground(new Color(255,255,204));//102,51,10
+		contentPane.setBackground(new Color(102,51,10));//102,51,10
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		paneTable.setLayout(null);
-		paneTable.setBackground(new Color(102, 61, 0));
+		paneTable.setBackground(new Color(0, 102, 0));
 
+		lblFond.setBounds(0,0,  1500, 800);
+		//paneTable.add(lblFond);
 
-		paneTable.setBounds(0, 0, w, h-230);
+		paneTable.setBounds(0, 0, w, h);
 		//btnComplet.setBounds(500, 250, 150, 50);
-		btnSimple.setBounds(300, 250, 150, 50);
+		//btnSimple.setBounds(300, 250, 150, 50);
 		//paneTable.add(btnComplet);
-		btnSimple.setBounds(w/3,h/2,300,100);
+		btnSimple.setBounds(w/3,h-200,300,100);
 		btnSimple.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		btnRecommanecer.setBounds(390, 765, 150, 20);
 
@@ -113,12 +116,12 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 		contentPane.add(btnJoeur3);
 
 		lblPointsOrdi.setBounds(390,645,1000,100);
-		//lblPointsOrdi.setForeground(new Color(255, 255, 0));
+		lblPointsOrdi.setForeground(new Color(255, 255, 0));
 		lblPointsOrdi.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		contentPane.add(lblPointsOrdi);
 
 		lblPointsJoeur.setBounds(830,645,1000,100);
-		//lblPointsJoeur.setForeground(new Color(255, 255, 0));
+		lblPointsJoeur.setForeground(new Color(255, 255, 0));
 		lblPointsJoeur.setFont(new Font("Times New Roman", Font.BOLD | Font.ITALIC, 30));
 		contentPane.add(lblPointsJoeur);
 
@@ -200,11 +203,12 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 		btnSimple.setVisible(true);
 //		paneTable.add(btnComplet);
 		paneTable.add(btnSimple);
+		paneTable.add(lblFond);
 		contentPane.repaint();
 
 	}
 	public void theVisible() {
-
+		paneTable.setBounds(0, 0, w, h-230);
 		int pJ = 0;//ctr_Ronda.Ctr_GetMain("j").getPoints();
 		int pO = 0;//ctr_Ronda.Ctr_GetMain("o").getPoints();
 		int cJ =  0;//ctr_Ronda.Ctr_GetMain("j").getGainCartes().getListe().size();
