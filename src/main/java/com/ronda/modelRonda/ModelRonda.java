@@ -45,6 +45,16 @@ public class ModelRonda {
         p_41_O += ajout;
         
     }
+    public void initial_PT() {
+        paquet = new Paquet("p");
+        table = new Paquet("t");
+        joeur = new Main();
+        ordi = new Main();
+        p_41_J=0;
+        p_41_O=0;
+        gagnanttDernierTour="";
+            
+    }
 
 
     public Paquet getPaquet(String nomPaquet) {

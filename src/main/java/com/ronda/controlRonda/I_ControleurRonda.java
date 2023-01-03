@@ -16,7 +16,7 @@ public interface I_ControleurRonda {
     Carte Ctr_MeilleurCarteOrdi();
     int Ctr_Point_Total(String main);
     void Ctr_Set_Au_PT(String main,int ajout);
-
+    void Ctr_Initial_PT();
 
 
 }

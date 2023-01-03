@@ -37,15 +37,11 @@ public class ControleurRonda implements I_ControleurRonda{
         }
         return retour;
     }
-    /*
+    
     @Override
-    public JLabel[] ctr_GetTabImagLabels() {
-        return instanceModelRonda.getTabImageTable();
+    public void Ctr_Initial_PT(){
+        instanceModelRonda.initial_PT();
     }
-    @Override
-    public JLabel Ctr_GetLabelCarte(Carte carte,int x,int y) {
-        return instanceModelRonda.deplacerCarte(carte, x, y);
-    }*/
     @Override
     public void Ctr_tour(Carte carte) {
         instanceModelRonda.tour(carte);

@@ -134,13 +134,14 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 			JOptionPane.showMessageDialog(null, "Ordi points "+  ctr_Ronda.Ctr_Point_Total("o") + 
 			"\nVos points " +  ctr_Ronda.Ctr_Point_Total("j") +
 			"\n Bravo Vous avez gagné");
-			System.exit(0);
+			//System.exit(0);
 		}else if(ctr_Ronda.Ctr_Point_Total("o") >=41){
 			JOptionPane.showMessageDialog(null, "Ordi points "+  ctr_Ronda.Ctr_Point_Total("o") + 
 			"\nVos points " +  ctr_Ronda.Ctr_Point_Total("j") +
 			"\n Malheuresement Vous avez perdu");
-			System.exit(0);
+			//System.exit(0);
 		}
+		initial();
 
 	}
 	public void score() {
@@ -189,6 +190,31 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 
 			}
 		}
+	}
+	public void initial() {
+		paneTable.removeAll();
+		paneTable.setBounds(0, 0, w, h-230);
+		int pJ = 0;//ctr_Ronda.Ctr_GetMain("j").getPoints();
+		int pO = 0;//ctr_Ronda.Ctr_GetMain("o").getPoints();
+		int cJ =  0;//ctr_Ronda.Ctr_GetMain("j").getGainCartes().getListe().size();
+		int cO =  0;//ctr_Ronda.Ctr_GetMain("o").getGainCartes().getListe().size();
+		ctr_Ronda.Ctr_Initial_PT();
+		lblOrdi1.setVisible(false);
+		lblOrdi2.setVisible(false);
+		lblOrdi3.setVisible(false);
+		btnOrdi.setVisible(false);
+		btnJoeur1.setVisible(false);		
+		btnJoeur2.setVisible(false);		
+		btnJoeur3.setVisible(false);	
+		btnSource.setVisible(true);	
+		lblPointsJoeur.setVisible(true);
+		lblPointsOrdi.setVisible(true);
+		btnRecommanecer.setVisible(true);
+		btnSimple.setVisible(false);
+		lblPointsJoeur.setText("<html>Vos points " + ctr_Ronda.Ctr_Point_Total("j") + "<br>les points de la partie " + pJ + "<br>Total Carte "+ cJ +" </br><html>");
+		lblPointsOrdi.setText("<html>Ordi points " + ctr_Ronda.Ctr_Point_Total("o") + "<br>les points de la partie " + pO +  "<br>Total Carte "+ cO +" </br><html>");
+		contentPane.repaint();
+
 	}
 
 	public void theNotVisible() {
@@ -671,9 +697,7 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 			theVisible();
 			passe = false;
 		}else  if(ev.getSource()== btnRecommanecer){
-			paneTable.removeAll();
-			contentPane.repaint();
-			theVisible();
+			initial();
 			passe = false;
 /*		}else  if(ev.getSource()== btnOrdi){
 			if(ctr_Ronda.Ctr_GetMain("o").getListPaquet().getListe().size()==3){
