@@ -152,7 +152,8 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 				c_Ordi = ctr_Ronda.Ctr_GetMain("o").getGainCartes().getListe().size();
 				if(ctr_Ronda.Ctr_GetGagnant().equalsIgnoreCase("o")){
 					c_Ordi += ctr_Ronda.Ctr_GetPaquet("t").getListe().size();
-				}else{
+				}
+				if(ctr_Ronda.Ctr_GetGagnant().equalsIgnoreCase("j")){
 					c_Joeur += ctr_Ronda.Ctr_GetPaquet("t").getListe().size();
 				}
 				p_j = ctr_Ronda.Ctr_GetMain("j").getPoints();
@@ -161,11 +162,17 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 				if(c_Joeur>20){
 					int plus = c_Joeur-20;
 					p_j += plus;
+					//ctr_Ronda.Ctr_Point_Total("j")
 				}else if(c_Ordi>20){
 					int plus = c_Ordi-20;
 					p_o += plus;
 
 				}
+
+				paneTable.removeAll();
+				lblPointsJoeur.setText("<html>Vos points " + ctr_Ronda.Ctr_Point_Total("j") + "<br>les points de la partie " + p_j + "<br>Total Carte "+ c_Joeur +" </br><html>");
+				lblPointsOrdi.setText("<html>Ordi points " + ctr_Ronda.Ctr_Point_Total("o") + "<br>les points de la partie " + p_o +  "<br>Total Carte "+ c_Ordi +" </br><html>");
+				contentPane.repaint();
 				verifierGagnant();
 				int rep = JOptionPane.showConfirmDialog(null, "Ordi points "+  ctr_Ronda.Ctr_Point_Total("o") + 
 				//"\nOrdi Cartes " + c_Ordi +
@@ -423,6 +430,26 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 		carteOrdiJouee.setX(x);
 		carteOrdiJouee.setY(y);
 		paneTable.add(lblOrdiJouee);
+		if(x!=0){
+			ArrayList<Carte> suiteListe = ramasser(carteJouee);
+			if(suiteListe.size()!=0){
+				for(Component c:paneTable.getComponents()){
+					if(c instanceof JLabel){
+							for(Carte carte:suiteListe){
+								y+=20;
+								if(c.getX() == carte.getX()){
+									c.setBounds(x,y,125,155);
+									carte.setX(x);
+									carte.setY(y);
+							
+								}
+							}
+					}
+					
+				}
+	   		}
+		}
+
 		contentPane.repaint();
 		
 		//new Timer(2*DELAY, this::boujerOrdi).start();
@@ -439,23 +466,32 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 		}*/
 //		contentPane.repaint();
 	}
-	public void ramasser(ActionEvent e) {
+	public ArrayList<Carte> ramasser(Carte carte) {
+		Collections.sort(ctr_Ronda.Ctr_GetPaquet("t").getListe());
+		System.out.println(ctr_Ronda.Ctr_GetPaquet("t").getListe().toString());
 		ArrayList<Carte> suiteListe = new ArrayList<Carte>();
+		int existe = ctr_Ronda.Ctr_GetPaquet("t").getListesNumero().indexOf(carte.getNombre());
+		if(existe != -1){
+			int current = ctr_Ronda.Ctr_GetPaquet("t").getListesNumero().get(existe);
 		for(int i=0;i<ctr_Ronda.Ctr_GetPaquet("t").getListe().size()-1;i++){
-			if(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i).getNombre()==carteJouee.getNombre()){
+			if(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i).getNombre()== current){
 				if(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i).getNombre()==7){
 					if(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i+1).getNombre()-ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i).getNombre()==3){
 						suiteListe.add(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i+1));
+						current+=3;
+
 					}
 				}else{
 					if(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i+1).getNombre()-ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i).getNombre()==1){
 						suiteListe.add(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i+1));
+						current+=1;
 					}
 
 				}
 			}
 		}
-	for(Component c:paneTable.getComponents()){
+	}
+/*	for(Component c:paneTable.getComponents()){
 			if(c instanceof JLabel){
 					for(Carte carte:suiteListe){
 						if(c.getX() == carte.getX()){
@@ -467,12 +503,17 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 			
 		}
 		//lblJouee.setBounds(0, 0, WIDTH, HEIGHT);
-		contentPane.repaint();
+		contentPane.repaint();*/
+		System.out.println(suiteListe.toString());
+	
+		return suiteListe;
 }
     public void bouger(){//ActionEvent e
 		int x=carteJouee.getX(),y=carteJouee.getY();
 		if(lblJouee.getX()!=1400){
-			ArrayList<Carte> suiteListe = new ArrayList<Carte>();
+			
+			ArrayList<Carte> suiteListe = ramasser(carteJouee);
+			/*
 			for(int i=0;i<ctr_Ronda.Ctr_GetPaquet("t").getListe().size()-1;i++){
 				if(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i).getNombre()==carteJouee.getNombre()){
 					if(ctr_Ronda.Ctr_GetPaquet("t").getListe().get(i).getNombre()==7){
@@ -486,7 +527,7 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 
 					}
 				}
-			}
+			}*/
 /*		int indX = tabDesX().indexOf(x);
 		if(indX !=-1){
 			y+=200;
@@ -516,7 +557,7 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 						if(suiteListe.size()!=0){	
 							for(Carte carte:suiteListe){
 								if(c.getX() == carte.getX()){
-									new Timer(1000, this::ramasser);
+//									new Timer(1000, this::ramasser);
 									paneTable.remove(c);
 		
 								}
@@ -551,9 +592,28 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 		carteJouee.setX(x);
 		carteJouee.setY(y);
 		paneTable.add(lblJouee);
+
+		if(x!=1400){
+			ArrayList<Carte> suiteListe = ramasser(carteJouee);
+			if(suiteListe.size()!=0){
+				for(Component c:paneTable.getComponents()){
+					if(c instanceof JLabel){
+							for(Carte carte:suiteListe){
+								y+=20;
+								if(c.getX() == carte.getX()){
+									c.setBounds(x,y,125,155);
+									carte.setX(x);
+									carte.setY(y);
+							
+								}
+							}
+					}
+					
+				}
+	   		}
+		}
+
 		contentPane.repaint();
-		 
-		//new Timer(DELAY, this::bouger).start();
 		
 	}
 /*	public void dors(ActionEvent e){
