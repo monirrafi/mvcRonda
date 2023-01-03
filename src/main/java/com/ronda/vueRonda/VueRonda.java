@@ -162,10 +162,11 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 				if(c_Joeur>20){
 					int plus = c_Joeur-20;
 					p_j += plus;
-					//ctr_Ronda.Ctr_Point_Total("j")
+					ctr_Ronda.Ctr_Set_Au_PT("j", plus);
 				}else if(c_Ordi>20){
 					int plus = c_Ordi-20;
 					p_o += plus;
+					ctr_Ronda.Ctr_Set_Au_PT("o", plus);
 
 				}
 

@@ -85,5 +85,14 @@ public class ControleurRonda implements I_ControleurRonda{
         }
         return retour;
     }
+    @Override
+    public void Ctr_Set_Au_PT(String main,int ajout){
+        if(main.equalsIgnoreCase("j")){
+            instanceModelRonda.setP_41_J(ajout);
+       }else if(main.equalsIgnoreCase("o")){
+        instanceModelRonda.setP_41_O(ajout);
+    }
+
+    }
     
 }

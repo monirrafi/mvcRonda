@@ -15,7 +15,7 @@ public interface I_ControleurRonda {
     String Ctr_GetGagnant();
     Carte Ctr_MeilleurCarteOrdi();
     int Ctr_Point_Total(String main);
-    void Ctr_Set_Au_PT(int ajout);
+    void Ctr_Set_Au_PT(String main,int ajout);
 
 
 
