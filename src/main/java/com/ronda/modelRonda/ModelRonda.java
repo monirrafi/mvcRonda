@@ -262,26 +262,28 @@ public class ModelRonda {
     }
     public void tourOrdi() {
         int[] listeMeileur = indexMeilleurCarte();
-        if(listeMeileur[0] != -1){
-            Carte carte = ordi.getListPaquet().getListe().get(listeMeileur[0]);
-            Paquet suiteOrdi = sequence(carte);
-            for(Carte cart:suiteOrdi.getListe()){
-                table.moveCarteEtChangeOwner(cart,ordi.getGainCartes());
+        if(listeMeileur.length != 0){
+            if(listeMeileur[0] != -1){
+                Carte carte = ordi.getListPaquet().getListe().get(listeMeileur[0]);
+                Paquet suiteOrdi = sequence(carte);
+                for(Carte cart:suiteOrdi.getListe()){
+                    table.moveCarteEtChangeOwner(cart,ordi.getGainCartes());
+                }
+                // cas de missa
+                if(table.getListe().size() ==0){
+                    listeMeileur[1]++;
+                }
+                ordi.ajoutPoints(listeMeileur[1]);
+                setP_41_O(listeMeileur[1]);
+                ordi.getListPaquet().moveCarteEtChangeOwner(carte, ordi.getGainCartes());
+        
+                gagnanttDernierTour = "o";
+        
+            }else{
+                Carte carte = ordi.getListPaquet().getListe().get(0);
+                ordi.getListPaquet().moveUneCarte(carte, table);
+        
             }
-            // cas de missa
-            if(table.getListe().size() ==0){
-                listeMeileur[1]++;
-            }
-            ordi.ajoutPoints(listeMeileur[1]);
-            setP_41_O(listeMeileur[1]);
-            ordi.getListPaquet().moveCarteEtChangeOwner(carte, ordi.getGainCartes());
-    
-            gagnanttDernierTour = "o";
-    
-        }else{
-            Carte carte = ordi.getListPaquet().getListe().get(0);
-            ordi.getListPaquet().moveUneCarte(carte, table);
-    
         }
         
     }   

@@ -58,17 +58,21 @@ public class ControleurRonda implements I_ControleurRonda{
     }
     @Override
     public Carte Ctr_MeilleurCarteOrdi() {
-        if(instanceModelRonda.indexMeilleurCarte().length!=0){
-            int index = instanceModelRonda.indexMeilleurCarte()[0];
-            if(index != -1){
-                return instanceModelRonda.getOrdi().getListPaquet().getListe().get(index);
+        if(instanceModelRonda.getOrdi().getListPaquet().getListe().size()!=0){
+            if(instanceModelRonda.indexMeilleurCarte().length!=0){
+                int index = instanceModelRonda.indexMeilleurCarte()[0];
+                if(index != -1){
+                    return instanceModelRonda.getOrdi().getListPaquet().getListe().get(index);
+                }else{
+                    return instanceModelRonda.getOrdi().getListPaquet().getListe().get(0);
+                }
             }else{
-                return instanceModelRonda.getOrdi().getListPaquet().getListe().get(0);
+                return null;
             }
         }else{
             return null;
         }
-        
+    
          
       }
     @Override
