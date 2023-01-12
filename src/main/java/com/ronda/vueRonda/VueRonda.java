@@ -1,4 +1,4 @@
-package main.java.com.ronda.vueRonda;
+package com.ronda.vueRonda;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -108,23 +108,23 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 		contentPane.add(lblOrdi3);
 
 
-		btnRecommanecer.setBounds(695, 775, W, 20);
+		btnRecommanecer.setBounds(695, 680+(H-30), W, 20);
 		contentPane.add(btnRecommanecer);
 
 		btnCommencer = new JButton("Distribuer");
-		btnCommencer.setBounds(695, 645,  W, H-30);
+		btnCommencer.setBounds(695, 680,  W, H-30);
 		contentPane.add(btnCommencer);
 		
 		btnJoeur1 = new JButton("joeur1");
-		btnJoeur1.setBounds(w-385, 645,  W, H);
+		btnJoeur1.setBounds(w-385, 680,  W, H);
 		contentPane.add(btnJoeur1);
 		
 		btnJoeur2 = new JButton("joeur2");
-		btnJoeur2.setBounds(w-255, 645,  W, H);
+		btnJoeur2.setBounds(w-255, 680,  W, H);
 		contentPane.add(btnJoeur2);
 		
 		btnJoeur3 = new JButton("joeur3");
-		btnJoeur3.setBounds(w-125, 645,  W, H);
+		btnJoeur3.setBounds(w-125, 680,  W, H);
 		contentPane.add(btnJoeur3);
 
 		lblPointsOrdi.setBounds(510, 645,1000,100);

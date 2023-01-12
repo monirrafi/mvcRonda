@@ -2,7 +2,9 @@ package com.ronda;
 
 import javax.swing.JFrame;
 
-import main.java.com.ronda.vueRonda.VueRonda;
+import com.ronda.vueRonda.VueRonda;
+
+
 
 public class App extends JFrame {
 
