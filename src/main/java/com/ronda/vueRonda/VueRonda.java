@@ -47,7 +47,7 @@ public class VueRonda extends JFrame implements actionEvent, Runnable{
 	Dimension dimension = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
 	int h = (int)dimension.getHeight();
 	int w  = (int)dimension.getWidth();
-	final int DELAY = 200;
+	final int DELAY = 350;
 	final int H = 155;
 	final int W =125;
 
